@@ -5,6 +5,102 @@
 
 
 {% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron p-3">
+                <h2>  Manage <b>Employees</b> <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#mymodal">Add Employees</button> </h2>
+                <hr>
+
+                <table class="table table-hover table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                        
+                    </tr>
+                    <tr>
+                       <td>1</td>
+                        <td>John</td>
+                        <td>john@citorium.com</td>
+                        <td>Management</td>
+                        <td><a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a></td>
+                        <td><a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Ndegwa</td>
+                        <td>info@citorium.com</td>
+                        <td>Management</td>
+                        <td><a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a></td>
+                        <td><a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></td>
+                    </tr>
+                    <!--edit Modal-->
+                 <div id="modaledit" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                               <div class="modal-header">
+                                   <h4 class="modal-title">Add Employee</h4>
+                              </div>
+                <div class="modal-body">
+                 <form action="" method="POST">
+                     <div class="form-group">
+                        <label for="">Name:</label>
+                        <input type="hidden" name="id", value="id">
+                        <input type="text" class="form-control" name="name" value = "John">
+                        <label for="">Email:</label>
+                        <input type="email" class="form-control" name="email" value = "john@citorium.com">
+                        <label for="">Department:</label>
+                        <input type="text" class="form-control" name="department" value = "IT">
+
+                     </div>
+                     <div class=" form-group">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     </div>
+                </form>
+            </div>
+        </div>
+     </div>
+    
+</div> 
+                </table>
+            </div>
+<!--Add Modal-->
+<div id="mymodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Employee</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="">Name:</label>
+                        <input type="text" class="form-control" name="name" required = "1">
+                        <label for="">Email:</label>
+                        <input type="email" class="form-control" name="email" required = "1">
+                        <label for="">Department:</label>
+                        <input type="text" class="form-control" name="department" required = "1">
+
+                    </div>
+                    <div class=" form-group">
+                        <button class="btn btn-primary" type="submit">Add Employee</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div> 
+
 
 
 <P>HELLO FROM INHERITANCE</P>
