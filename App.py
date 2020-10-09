@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -23,15 +23,26 @@ class Employee(db.Model):
         self.department = department
 
 
-app = Flask(__name__)
-app.config['DEBUG'] = True
-
 
 @app.route('/', methods=['GET'])
 def Home():
     return render_template("index.html")
 
+@app.route('/insert', methods = ['POST'])
+def Insert():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        department = request.form['department']
+
+
+        my_data = Employee(name, email,department)
+        db.session.add(my_data)
+        db.session.commit()
+        flash('Record inserted successfully')
+
+        return redirect(url_for('Home'))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
     
