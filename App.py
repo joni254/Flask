@@ -24,9 +24,11 @@ class Employee(db.Model):
 
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'],)
 def Home():
-    return render_template("index.html")
+
+    all_data = Employee.query.all()
+    return render_template("index.html", E = all_data)
 
 @app.route('/insert', methods = ['POST'])
 def Insert():
@@ -42,6 +44,29 @@ def Insert():
         flash('Record inserted successfully')
 
         return redirect(url_for('Home'))
+
+@app.route('/update', methods = ['GET','POST'])
+def Update():
+    if request.method == 'POST':
+        the_data = Employee.query.get(request.form.get('id'))
+
+        the_data.name = request.form['name']
+        the_data.email = request.form['email']
+        the_data.department = request.form['department']
+
+        db.session.commit()
+        flash('Record updated successfully')
+        return redirect(url_for('Home'))
+
+@app.route('/delete/<id>/', methods=['GET','POST'])
+def delete(id):
+    del_data = Employee.query.get(id)
+    db.session.delete(del_data)
+    db.session.commit()
+    flash('Data deleted successfully')
+
+    return redirect(url_for('Home'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
